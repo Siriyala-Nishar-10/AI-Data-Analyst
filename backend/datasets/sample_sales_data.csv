@@ -1,0 +1,16 @@
+Product,Category,Quantity,Price,Revenue,Rating,City
+Laptop,Electronics,5,50000,250000,4.5,Bangalore
+Mouse,Accessories,20,800,16000,4.2,Bangalore
+Keyboard,Accessories,15,1500,22500,4.4,Chennai
+Monitor,Electronics,8,12000,96000,4.6,Hyderabad
+Headphones,Accessories,12,2500,30000,4.1,Mumbai
+Webcam,Electronics,10,3500,35000,4.3,Pune
+Printer,Electronics,6,15000,90000,4.0,Delhi
+USB Hub,Accessories,25,1200,30000,4.5,Bangalore
+SSD,Storage,10,6500,65000,4.7,Chennai
+RAM,Components,18,4200,75600,4.6,Hyderabad
+Graphics Card,Components,4,45000,180000,4.8,Mumbai
+Power Supply,Components,7,7000,49000,4.2,Pune
+Tablet,Electronics,9,22000,198000,4.5,Delhi
+Smartphone,Electronics,14,30000,420000,4.7,Bangalore
+Laptop Stand,Accessories,16,2200,35200,4.3,Chennai

@@ -1,0 +1,36 @@
+# Environment / Secrets
+.env
+.env.*
+!.env.example
+
+# Python
+.venv/
+venv/
+env/
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Node.js
+node_modules/
+dist/
+.vite/
+
+# Backend uploaded datasets
+backend/datasets/*.csv
+
+# Keep portfolio demo dataset
+!backend/datasets/sample_sales_data.csv
+
+# Jupyter
+.ipynb_checkpoints/
+
+# VS Code
+.vscode/
+
+# Logs
+*.log
+
+# OS
+.DS_Store
+Thumbs.db
