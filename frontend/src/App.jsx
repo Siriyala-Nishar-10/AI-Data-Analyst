@@ -249,8 +249,8 @@ export default function App() {
             <h2>No dataset selected</h2>
 
             <p>
-              Upload a CSV on the left to see stats,
-              charts, and ask the AI questions about it.
+              Upload a CSV file above to view stats, 
+              charts, and ask AI questions about your data.
             </p>
           </div>
         )}
