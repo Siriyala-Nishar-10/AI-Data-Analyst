@@ -79,6 +79,41 @@
   color: var(--accent);
 }
 
+/* ---------- Mobile-friendly CSV upload ---------- */
+
+.upload-button {
+  border: 1px solid var(--border);
+  background: var(--surface-2);
+  color: var(--text);
+  border-radius: var(--radius-sm);
+  padding: 8px 14px;
+  font-size: 12px;
+  font-weight: 500;
+  cursor: pointer;
+  min-height: 40px;
+  min-width: 120px;
+  touch-action: manipulation;
+}
+
+.upload-button:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.upload-button:active {
+  transform: scale(0.98);
+}
+
+.upload-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.dropzone-disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
 .upload-error {
   color: var(--danger);
   font-size: 12px;
@@ -289,6 +324,7 @@
     height: 6px;
     opacity: 0.4;
   }
+
   50% {
     height: 22px;
     opacity: 1;
@@ -707,6 +743,7 @@
     transform: translateY(0);
     opacity: 0.5;
   }
+
   40% {
     transform: translateY(-4px);
     opacity: 1;
@@ -759,10 +796,144 @@
     grid-template-columns: 1fr;
     grid-template-rows: auto 1fr;
   }
+
   .sidebar {
     border-right: none;
     border-bottom: 1px solid var(--border-soft);
-    max-height: 260px;
+    max-height: none;
+    padding: 16px 14px;
+  }
+
+  .dropzone {
+    padding: 16px 12px;
+    min-height: 130px;
+    justify-content: center;
+  }
+
+  .upload-button {
+    width: 100%;
+    max-width: 220px;
+    min-height: 44px;
+    font-size: 13px;
+  }
+
+  .main-panel {
+    padding: 20px 16px 40px;
+  }
+
+  .tab-row {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .tab-btn {
+    flex-shrink: 0;
+  }
+
+  .chart-frame {
+    padding: 12px;
+  }
+
+  .chat-tab {
+    min-height: 360px;
+    height: calc(100vh - 300px);
+  }
+
+  .chat-input-row {
+    padding: 10px;
+  }
+}
+
+/* ---------- Small mobile screens ---------- */
+
+@media (max-width: 480px) {
+  .sidebar {
+    padding: 14px 12px;
+  }
+
+  .brand h1 {
+    font-size: 14px;
+  }
+
+  .brand-sub {
+    font-size: 10px;
+  }
+
+  .dropzone {
+    padding: 14px 10px;
+    min-height: 125px;
+  }
+
+  .upload-button {
+    width: 100%;
+    max-width: none;
+    min-height: 46px;
+    font-size: 13px;
+  }
+
+  .dataset-list {
+    margin-top: 18px;
+  }
+
+  .main-panel {
+    padding: 16px 12px 32px;
+  }
+
+  .content-header h2 {
+    font-size: 19px;
+  }
+
+  .content-header {
+    gap: 12px;
+    margin-bottom: 16px;
+  }
+
+  .pulse-stats {
+    width: 100%;
+    justify-content: space-around;
+    padding: 10px;
+  }
+
+  .stat-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+  }
+
+  .stat-card {
+    padding: 12px;
+  }
+
+  .stat-value {
+    font-size: 19px;
+  }
+
+  .column-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .chat-bubble {
+    max-width: 92%;
+  }
+
+  .chat-scroll {
+    padding: 12px;
+  }
+
+  .chat-content {
+    font-size: 13px;
+  }
+
+  .chat-title-text strong {
+    font-size: 14px;
+  }
+
+  .chat-title-text span {
+    font-size: 10px;
+  }
+
+  .chat-clear-btn {
+    padding: 6px 8px;
+    font-size: 11px;
   }
 }
 
