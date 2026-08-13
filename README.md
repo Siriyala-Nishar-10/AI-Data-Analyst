@@ -2,48 +2,116 @@
 
 Upload a CSV, get instant stats and charts, and ask an AI questions about your data in plain English.
 
-## Tech Stack
+## 🚀 Live Demo
 
-- **Backend:** FastAPI, SQLAlchemy, PostgreSQL, Pandas
-- **Frontend:** React (Vite), Recharts, Axios
-- **AI:** Google Gemini API
+**Frontend:**
+https://ai-data-analyst-frontend-1wyn.onrender.com
 
-## Features
+**Backend API:**
+https://ai-data-analyst-backend-hoxe.onrender.com
 
-- Drag-and-drop CSV upload, stored on disk with metadata in PostgreSQL
-- Overview tab: row/column counts, data types, missing values, min/max/mean/median, top categorical values, and correlation matrix
-- Data tab: paginated table preview
-- Charts tab: histograms for numeric columns and bar charts for categorical columns
-- Ask AI tab: chat interface that sends the dataset schema, statistics, sample rows, and conversation history to Gemini
-- AI conversation remains available while switching between tabs
-- Clear chat functionality
+**API Documentation:**
+https://ai-data-analyst-backend-hoxe.onrender.com/docs
 
-## Prerequisites
+---
 
-- Python 3.11+
-- Node.js 18+
-- PostgreSQL running locally (or update `DATABASE_URL` to point elsewhere)
-- A free Gemini API key from [Google AI Studio](https://aistudio.google.com/apikey) (only needed for the "Ask AI" tab — everything else works without it)
+## 🛠️ Tech Stack
 
-## Setup
+* **Backend:** FastAPI, SQLAlchemy, PostgreSQL, Pandas
+* **Frontend:** React (Vite), Recharts, Axios
+* **AI:** Google Gemini API
+* **Deployment:** Render
+* **Version Control:** Git & GitHub
+
+---
+
+## ✨ Features
+
+* Drag-and-drop CSV upload
+* CSV files stored on disk with metadata in PostgreSQL
+* Overview tab with:
+
+  * Row and column counts
+  * Data types
+  * Missing values
+  * Minimum, maximum, mean, and median
+  * Top categorical values
+  * Correlation matrix
+* Data tab with paginated table preview
+* Charts tab with:
+
+  * Histograms for numerical columns
+  * Bar charts for categorical columns
+* Ask AI tab for natural-language questions about the dataset
+* Gemini receives dataset schema, statistics, sample rows, and conversation history
+* AI conversation remains available while switching between tabs
+* Clear chat functionality
+* Responsive interface for desktop and mobile
+* Dataset selection and deletion
+* Production deployment with separate frontend and backend services
+
+---
+
+## 🏗️ Architecture
+
+```text
+User
+ │
+ ▼
+React + Vite Frontend
+ │
+ ▼
+FastAPI REST API
+ │
+ ├──► Pandas → Data Analysis
+ │
+ ├──► PostgreSQL → Dataset Metadata
+ │
+ └──► Google Gemini → AI Questions
+```
+
+---
+
+## 📋 Prerequisites
+
+* Python 3.11+
+* Node.js 18+
+* PostgreSQL
+* Google Gemini API key
+
+A Gemini API key is only required for the **Ask AI** functionality. Other dataset analysis features work without the Gemini API.
+
+---
+
+## ⚙️ Setup
 
 ### 1. Database
 
+Create the PostgreSQL database:
+
 ```bash
-# create the database (adjust user/password to match backend/.env)
 psql -U postgres -c "CREATE DATABASE ai_data_analyst;"
 ```
 
-The app creates its own tables automatically on first run — no migrations needed.
+The application creates its required tables automatically when the backend starts.
+
+---
 
 ### 2. Backend
 
+Navigate to the backend:
+
 ```bash
 cd backend
+```
+
+Create a virtual environment:
+
+```bash
 python -m venv .venv
 ```
 
-Activate the virtual environment.
+Activate it.
 
 **Windows:**
 
@@ -63,7 +131,13 @@ Install dependencies:
 pip install -r requirements.txt
 ```
 
-Create `backend/.env`:
+Create:
+
+```text
+backend/.env
+```
+
+Add:
 
 ```env
 DATABASE_URL=postgresql+psycopg://postgres:<your-password>@localhost:5432/ai_data_analyst
@@ -77,20 +151,29 @@ Run the backend:
 python -m uvicorn app.main:app --reload --port 8000
 ```
 
-API docs available at:
+API documentation:
 
 ```text
 http://localhost:8000/docs
 ```
 
+---
+
 ### 3. Frontend
+
+Open another terminal:
 
 ```bash
 cd frontend
+```
+
+Install dependencies:
+
+```bash
 npm install
 ```
 
-Create the frontend environment file:
+Create the environment file.
 
 **Windows:**
 
@@ -104,7 +187,7 @@ Copy-Item .env.example .env
 cp .env.example .env
 ```
 
-The default backend URL is:
+The local backend URL is:
 
 ```env
 VITE_API_BASE=http://localhost:8000
@@ -122,20 +205,24 @@ Open:
 http://localhost:5173
 ```
 
-## API Overview
+---
 
-| Method | Endpoint | Description |
-| ------ | -------- | ----------- |
-| GET | `/` | API health check |
-| GET | `/datasets` | List uploaded datasets |
-| POST | `/datasets/upload` | Upload a CSV file |
-| DELETE | `/datasets/{id}` | Delete a dataset |
-| GET | `/datasets/{id}/preview` | First N rows |
-| GET | `/datasets/{id}/summary` | Full statistical summary |
-| GET | `/datasets/{id}/chart-data?column=` | Chart-ready data for one column |
-| POST | `/datasets/{id}/chat` | Ask Gemini a question about the dataset |
+## 🔌 API Overview
 
-## Project Structure
+| Method | Endpoint                            | Description                  |
+| ------ | ----------------------------------- | ---------------------------- |
+| GET    | `/`                                 | API health check             |
+| GET    | `/datasets`                         | List uploaded datasets       |
+| POST   | `/datasets/upload`                  | Upload a CSV file            |
+| DELETE | `/datasets/{id}`                    | Delete a dataset             |
+| GET    | `/datasets/{id}/preview`            | Get dataset preview          |
+| GET    | `/datasets/{id}/summary`            | Get statistical summary      |
+| GET    | `/datasets/{id}/chart-data?column=` | Get chart-ready data         |
+| POST   | `/datasets/{id}/chat`               | Ask Gemini about the dataset |
+
+---
+
+## 📁 Project Structure
 
 ```text
 app/
@@ -146,8 +233,10 @@ app/
 │   │   ├── database.py
 │   │   ├── main.py
 │   │   └── models.py
+│   │
 │   ├── datasets/
 │   │   └── sample_sales_data.csv
+│   │
 │   └── requirements.txt
 │
 ├── frontend/
@@ -157,18 +246,105 @@ app/
 │   │   ├── App.css
 │   │   ├── api.js
 │   │   └── main.jsx
+│   │
 │   ├── package.json
 │   └── vite.config.js
+│
+├── docs/
+│   └── AI_Data_Analyst_Technical_Documentation.docx
+│
+├── reports/
+│   └── AI_Data_Analyst_Project_Report.pdf
+│
+├── screenshots/
+│   ├── dashboard.png
+│   ├── overview.png
+│   ├── data.png
+│   ├── charts.png
+│   └── ask-ai.png
+│
+├── notebooks/
 │
 ├── .gitignore
 └── README.md
 ```
 
-## Security
+---
+
+## 📚 Documentation
+
+Detailed project documentation and the final project report are included in the repository.
+
+### 📘 Technical Documentation
+
+The technical documentation covers:
+
+* System architecture
+* Project structure
+* Frontend components
+* Backend modules
+* Database integration
+* Gemini integration
+* Environment variables
+* Deployment
+* Responsive design
+* Testing
+* Future enhancements
+
+Location:
+
+```text
+docs/AI_Data_Analyst_Technical_Documentation.docx
+```
+
+### 📄 Project Report
+
+The final project report contains:
+
+* Abstract
+* Introduction
+* Problem statement
+* Objectives
+* Proposed solution
+* Features
+* Technology stack
+* System architecture
+* Functional workflow
+* Testing
+* Deployment
+* Challenges and solutions
+* Future scope
+* Conclusion
+
+Location:
+
+```text
+reports/AI_Data_Analyst_Project_Report.pdf
+```
+
+### 📸 Screenshots
+
+Project screenshots are available in:
+
+```text
+screenshots/
+```
+
+Recommended screenshots include:
+
+* Dashboard
+* Overview
+* Data
+* Charts
+* Ask AI
+
+---
+
+## 🔐 Security
 
 Environment files containing API keys and database credentials are excluded from Git.
 
-Do not commit:
+Never commit:
 
 ```text
 .env
@@ -179,33 +355,107 @@ __pycache__/
 
 Use `.env.example` files to document required environment variables without exposing secrets.
 
-## Project Status
+**Never expose your Gemini API key, PostgreSQL password, or production database URL in the repository.**
 
-Core flow (upload → analyze → visualize → chat) is fully built and tested end to end.
+---
+
+## 📱 Responsive Design
+
+The application is designed to work on both:
+
+* 💻 Laptop/Desktop
+* 📱 Mobile
+
+The interface includes responsive layouts, mobile-friendly CSV upload, horizontally scrollable data tables, and charts that adapt to smaller screens.
+
+---
+
+## 🚀 Deployment
+
+The application is deployed using Render.
+
+### Frontend
+
+https://ai-data-analyst-frontend-1wyn.onrender.com
+
+### Backend
+
+https://ai-data-analyst-backend-hoxe.onrender.com
+
+### API Documentation
+
+https://ai-data-analyst-backend-hoxe.onrender.com/docs
+
+### Production Architecture
+
+```text
+Public User
+     │
+     ▼
+Render Frontend
+     │
+     ▼
+Render FastAPI Backend
+     │
+     ├──► PostgreSQL
+     │
+     ├──► Pandas
+     │
+     └──► Google Gemini
+```
+
+> Note: The free Render instance may spin down after inactivity, which can cause a delay when the application receives its first request after being idle.
+
+---
+
+## 📊 Project Status
 
 ### Completed
 
-- CSV upload
-- PostgreSQL integration
-- Dataset analysis
-- Dataset preview
-- Statistical summaries
-- Charts and visualizations
-- Gemini AI integration
-- Ask AI chat
-- Persistent conversation while switching tabs
-- Clear chat functionality
-- React frontend
-- FastAPI backend
-- REST API
+* [x] CSV upload
+* [x] PostgreSQL integration
+* [x] Dataset analysis
+* [x] Dataset preview
+* [x] Statistical summaries
+* [x] Charts and visualizations
+* [x] Gemini AI integration
+* [x] Ask AI chat
+* [x] Persistent conversation while switching tabs
+* [x] Clear chat functionality
+* [x] React frontend
+* [x] FastAPI backend
+* [x] REST API
+* [x] Responsive desktop interface
+* [x] Responsive mobile interface
+* [x] Production deployment
+* [x] Technical documentation
+* [x] Project report
+* [x] Project screenshots
 
-### Future Improvements
+---
 
-- User accounts
-- Multi-file joins
-- Export-to-PDF reports
-- Saved chart dashboards
-- Cloud storage
-- Advanced AI-generated analysis
+## 🔮 Future Improvements
 
-```
+* User accounts
+* Multi-file joins
+* Export-to-PDF reports directly from the application
+* Saved chart dashboards
+* Cloud storage
+* Advanced AI-generated analysis
+* More file formats such as Excel
+* Advanced filtering
+* Saved analysis history
+
+---
+
+## 👨‍💻 Project
+
+**AI Data Analyst**
+
+A full-stack AI-powered data analysis application built to make CSV exploration, visualization, and natural-language data analysis easier.
+
+**GitHub:**
+https://github.com/Siriyala-Nishar-10/AI-Data-Analyst
+
+**Live Demo:**
+https://ai-data-analyst-frontend-1wyn.onrender.com
